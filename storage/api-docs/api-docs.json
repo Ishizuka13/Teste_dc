@@ -1,0 +1,201 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API de Gestão de Quartos",
+        "description": "Documentação da API para gerenciar quartos",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/rooms": {
+            "get": {
+                "tags": [
+                    "Quartos"
+                ],
+                "summary": "Listar todos os quartos",
+                "operationId": "fc04f85434400dbf0e26d2ec77a5878d",
+                "responses": {
+                    "200": {
+                        "description": "Lista de quartos retornada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Room"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro ao buscar lista de quartos"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Quartos"
+                ],
+                "summary": "Criar um novo quarto",
+                "operationId": "8b76707b908a635867052194c4b2a7ca",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "room_number",
+                                    "room_type",
+                                    "price"
+                                ],
+                                "properties": {
+                                    "room_number": {
+                                        "type": "string",
+                                        "example": "101"
+                                    },
+                                    "room_type": {
+                                        "type": "string",
+                                        "example": "Deluxe"
+                                    },
+                                    "price": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 150
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Quarto criado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Room"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Número de quarto já existente"
+                    },
+                    "500": {
+                        "description": "Erro ao criar quarto"
+                    }
+                }
+            }
+        },
+        "/rooms/{id}": {
+            "put": {
+                "tags": [
+                    "Quartos"
+                ],
+                "summary": "Atualizar um quarto existente",
+                "operationId": "ea75b11760a871bba18cf5f9e43a5b70",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do quarto",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "room_number": {
+                                        "type": "string",
+                                        "example": "101"
+                                    },
+                                    "room_type": {
+                                        "type": "string",
+                                        "example": "Deluxe"
+                                    },
+                                    "price": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 150
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "example": "Ocupado"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Quarto atualizado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Room"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Quarto não encontrado"
+                    },
+                    "500": {
+                        "description": "Erro ao atualizar o quarto"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Room": {
+                "required": [
+                    "room_number",
+                    "room_type",
+                    "status",
+                    "price"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "room_number": {
+                        "type": "string",
+                        "example": "101"
+                    },
+                    "room_type": {
+                        "type": "string",
+                        "example": "Deluxe"
+                    },
+                    "status": {
+                        "type": "string",
+                        "example": "Disponível"
+                    },
+                    "price": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 150
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Quartos",
+            "description": "Quartos"
+        }
+    ]
+}
