@@ -2,15 +2,16 @@
 
 ### Público
 
--   POST '/login/admin' - Login de adminstrador(es): email, password
+-   POST 'admin/login' - Login de adminstrador(es): email, password;
+-   POST 'user/login' - Login de Usuário: email, password;
 -   POST '/register/user' - Registro de usuários passando: name, email, password;
 
--   POST '/logout' - Faz o logout
+-   POST '/logout' - Faz o logout;
 
--   GET '/reservations' - Retorna a lista de quartos reservados
+-   GET '/reservations' - Retorna a lista de quartos reservados;
 -   GET '/reservations/date' - Retorna os quartos disponíveis dentro do limite de dias passado por parâmetros: start_date,end_date;
 
--   GET '/rooms' - Retorna a lista de quartos disponíveis
+-   GET '/rooms' - Retorna a lista de quartos disponíveis;
 
 ### Usuários
 
@@ -26,7 +27,7 @@
 -   PUT '/reservations/{id}' - Atualiza informações do quarto: room_id, user_id, check_in, check_out
 -   DELETE 'reservations/{id}' - Apaga a reserva do quarto mesmo se tiver com menos de 48 horas pro checkin
 
--   GET '/reports' - Faz o relatório do faturamento, número de reservas e lista as reservas por clientes. start_date, end_date, room_type
+-   GET '/reports' - Faz o relatório do faturamento, número de reservas e lista as reservas por clientes. parâmetros: start_date, end_date, room_type
 
 ## FALTA
 
