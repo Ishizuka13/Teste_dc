@@ -43,7 +43,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/users', [LoginController::class, 'get_users']);
 
     // Quartos
-    Route::post('/rooms', [RoomController::class, 'create']);
+    // Route::post('/rooms', [RoomController::class, 'create']);
     Route::put('/rooms/{id}', [RoomController::class, 'update']);
 
     // Reservas
